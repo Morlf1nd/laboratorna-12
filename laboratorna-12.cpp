@@ -3,7 +3,7 @@
 #include <algorithm>
 int main() {
     setlocale(0, ".1251");
-    const int kt = 4;
+    const int kt = 5;
     int array[kt];
     for (int i = 0; i < kt; i++)
     {
@@ -16,34 +16,30 @@ int main() {
             std::cout << "Недійсне ціле число!";
         }
     }
-    int Min = array[0];
-    for (int i = 1; i < kt; i++)
-    {
-
-        if (fabs(array[i]) < Min)
-        {
-            Min = fabs(array[i]);
-        }
-    }
-    std::cout << "Мінімальне число в масиві за модулем це: " << Min << std::endl;
-
-    int nylik=0;
+    int array_lenght = 0;
+    int A;
+    std::cout << "Введіть число А: ";
+    std::cin >> A;
     for (int i = 0; i < kt; i++)
     {
-        if (array[i] == 0)
-        {
-            nylik = i;
+        if (array[i] < A) {
+            array_lenght++;
+        }
+    }
+    std::cout << "К-ть елементів менших за " << A << " дорівнює " << array_lenght << std::endl;
+    int sym = 0;
+    int minys = 0;
+
+    for (int i = 0; i < kt; i++)
+    {
+        if (array[i] < 0) {
+            minys = i;
         }
     }
 
-
-
-    int syma = 0;
-    for (int i = nylik; i < kt; i++)
+    for (int i = minys + 1; i < kt; i++)
     {
-        syma += fabs(array[i]);
+        sym += array[i];
     }
-    std::cout << "Сумма модулів елементів масиву дорівнює: " << syma << std::endl;
-
-
+    std::cout << "Сумма елементів після останього від'ємного елементу: " << sym << std::endl;
 }

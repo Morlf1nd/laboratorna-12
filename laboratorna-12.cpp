@@ -1,65 +1,27 @@
 ﻿#include <iostream>
 #include <cmath>
+#include <cstdlib> 
+#include <ctime> 
+#include <time.h> 
+
 int main() {
     setlocale(0, ".1251");
-
-    const int kt = 4;
-    int array[kt];
-    for (int i = 0; i < kt; i++)
+    const int array_lenght = 10;
+    int array[array_lenght];
+    int min = -100;
+    int max = 100;
+    int posled = 0;
+    for (int i = 0; i < array_lenght; i++)
     {
-        std::cout << "Введіть " << i << " елемент ";
-        std::cin >> array[i];
-        if (array[i] >= INT_MIN && array[i] <= INT_MAX) {
-
-        }
-        else {
-            std::cout << "Недійсне ціле число!";
-        }
-
-
+        array[i] = min + rand() % (max - min + 1);;
+        std::cout << i << " " << array[i] << std::endl;
     }
-    int Minys = 0;
-    for (int i = 0; i < kt; i++)
+    for (int i = 0; i < array_lenght; i++)
     {
-        if (array[i] < 0) {
-            Minys += 1;
+        if (array[i] < array[i + 1]) {
+            posled += 1;
         }
     }
-    std::cout << "К-ть мінусових чисел в масиві= " << Minys << std::endl;
+    std::cout << "К-ть послідовних чисел в масиві: " << posled;
 
-    int Min = 0;
-    int sym = 0;
-    for (int i = 0; i < kt; i++)
-    {
-        if (array[i] == 0) {
-            Min = i;
-        }
-
-    }
-    for (int i = Min; i < kt; i++)
-    {
-        sym += array[i];
-    }
-    std::cout << "Сумма елементів після нуля: " << sym << std::endl;
-
-    for (int start = 0; start < kt - 1; ++start)
-    {
-
-        int small = start;
-
-        for (int current = start + 1; current < kt; ++current)
-        {
-
-            if (array[current] < array[small])
-
-                small = current;
-        }
-
-
-        std::swap(array[start], array[small]);
-    }
-
-
-    for (int i = 0; i < kt; ++i)
-        std::cout << array[i] << ' ';
 }

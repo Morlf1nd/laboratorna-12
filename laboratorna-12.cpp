@@ -1,9 +1,9 @@
 ﻿#include <iostream>
 #include <cmath>
-#include <algorithm>
 int main() {
     setlocale(0, ".1251");
-    const int kt = 5;
+
+    const int kt = 4;
     int array[kt];
     for (int i = 0; i < kt; i++)
     {
@@ -15,31 +15,51 @@ int main() {
         else {
             std::cout << "Недійсне ціле число!";
         }
-    }
-    int array_lenght = 0;
-    int A;
-    std::cout << "Введіть число А: ";
-    std::cin >> A;
-    for (int i = 0; i < kt; i++)
-    {
-        if (array[i] < A) {
-            array_lenght++;
-        }
-    }
-    std::cout << "К-ть елементів менших за " << A << " дорівнює " << array_lenght << std::endl;
-    int sym = 0;
-    int minys = 0;
 
+
+    }
+    int Minys = 0;
     for (int i = 0; i < kt; i++)
     {
         if (array[i] < 0) {
-            minys = i;
+            Minys += 1;
         }
     }
+    std::cout << "К-ть мінусових чисел в масиві= " << Minys << std::endl;
 
-    for (int i = minys + 1; i < kt; i++)
+    int Min = 0;
+    int sym = 0;
+    for (int i = 0; i < kt; i++)
+    {
+        if (array[i] == 0) {
+            Min = i;
+        }
+
+    }
+    for (int i = Min; i < kt; i++)
     {
         sym += array[i];
     }
-    std::cout << "Сумма елементів після останього від'ємного елементу: " << sym << std::endl;
+    std::cout << "Сумма елементів після нуля: " << sym << std::endl;
+
+    for (int start = 0; start < kt - 1; ++start)
+    {
+
+        int small = start;
+
+        for (int current = start + 1; current < kt; ++current)
+        {
+
+            if (array[current] < array[small])
+
+                small = current;
+        }
+
+
+        std::swap(array[start], array[small]);
+    }
+
+
+    for (int i = 0; i < kt; ++i)
+        std::cout << array[i] << ' ';
 }
